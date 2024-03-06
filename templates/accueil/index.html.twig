@@ -1,0 +1,79 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div id="visuel">
+
+        <div class="col-12 d-flex justify-content-center my-5">
+
+            <h2><strong>Les categories proposées</strong></h2>
+
+        </div>
+        
+        <div class="d-flex justify-content-center">
+            <!-- AFFICHAGE CATEGORIES SUR ACCEUIL  -->
+            <div class="row col-9">
+            
+                {% for categorie in categorie %}
+
+                    <div class="card custom-border bg zoom ck col-12 col-md-3 bg my-4 mx-5">
+
+                        <img class="card-img-top border-1 mt-3 img-fluid" src="{{ asset('food/' ~ categorie . image) }}" alt="{{ categorie . libelle }}">
+
+                        <div class="card-body text-center">
+
+                            <h2 class="card-title">{{ categorie . libelle }}</h2>
+                            <span class="alert text-danger" data-id="{{ categorie . id }}">Disponible</span>
+                            <span data-id="{{ categorie . id }}" class="alert gg"></span>
+                            
+                        </div>
+
+                    </div> 
+                    
+                {% endfor %}
+                    
+            </div>
+
+        </div>
+
+        <div class="col-12 d-flex justify-content-center my-5">
+
+            <h1><strong>Best-sellers gustatives</strong></h1>
+
+        </div>
+
+        <!-- AFFICHAGE DES BEST-SELLERS SUR INDEX -->
+        <div class="row col-12 d-flex justify-content-center mx-auto">
+
+            {% for plats in plat %}
+            
+                <div class="card custom-border bg zoom col-12 col-md-2 mb-2 my-2 mx-auto">
+
+                    <img src="{{ asset('food/' ~ plats . image) }}" class="card-img-top border-1 mt-3 img-fluid" alt="{{ plats . libelle }}">
+
+                    <div class="card-body text-center">
+
+                        <h3 class="card-title">{{ plats . libelle }}</h3>
+
+                        <p class="card-text">{{ plats . description }}<br>
+                        Menu: {{ plats . prix }} €</p>     
+
+                        <a href="index.php?page=commande&id={{ plats . id }}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+
+                    </div>
+                    
+                </div> 
+            
+            {% endfor %}
+
+            <div class="d-flex justify-content-center mt-4"> <!--bouton--> 
+
+                <a href="{{ path('app_categorie') }}" class="btn btn-light btn-lg zoom col-5 col-md-1 btns">Suivant</a>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+    
+{% endblock %}

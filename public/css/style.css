@@ -1,0 +1,158 @@
+body 
+{
+    background-image: url("/images_the_district/fondecran.png"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+video 
+{
+    width: 100%;
+}
+
+.video-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-content 
+{
+    position: relative;
+}
+
+.video 
+{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.search-bar 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.custom-border 
+{
+    border:  solid #fef4e8;
+    border-width: 5%;
+    border-radius: 5%;
+}
+
+.border-1 
+{
+    border-radius: 5%;
+    border-width: 5%;
+    border:  solid transparent ;
+}
+
+.rotate 
+{
+    width: 100px;
+    height: 100px;
+    transition: transform 0.1s; 
+}
+
+.rotate:hover 
+{
+    transform: rotate(1deg); 
+}
+
+.bg 
+{
+    background-color: #970747;
+}
+
+.ecrt 
+{
+    font-size: 140%;
+}
+
+.ecriture
+{
+    font-size: 100%;
+}
+
+.btns 
+{
+    color: #970747;
+}
+
+.btn-light 
+{
+    background-color: #fef4e8;
+    border:  solid #970747
+}
+.card-body 
+{
+    color: #fef4e8;
+}
+
+.zoom 
+{
+    transition: transform 0.2s;
+}
+
+.zoom:hover 
+{
+    transform: scale(1.1); 
+}
+
+/* .timg 
+{
+    height: 40%;
+} */
+
+.tcard 
+{
+    height: 400px;
+}
+
+/* .imgs 
+{
+    height: 75%;
+} */
+
+@media screen and (max-width: 768px) 
+{
+
+    .tcard
+    {
+
+        height: 9%;
+    }
+
+    .ecrt
+    {
+        font-size: 80%;
+    }
+
+    .ecriture 
+    {
+        font-size: 70%;
+        display: flex;
+        justify-content: space-between; 
+        align-items: center; 
+    }
+
+    .navbar-nav
+    {
+        flex-direction: row; 
+    }
+
+    .navbar-nav li 
+    {
+        margin-right: 20px;
+    }
+
+};
+ 
+
+

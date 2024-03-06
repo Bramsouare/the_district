@@ -1,17 +1,153 @@
 <!DOCTYPE html>
 <html>
+
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+
+        <meta name="description" content="The district propose des plats de restauration rapide, de type fast-food à consommer sur place où à emporter, et bénéficie d'un service de livraison">
+        <meta name="keywords" content="restauration, burgers, pizzas, pates, wraps, salade, veggie">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="index, follow">
+        <meta charset="utf-8">
+        
+        <title>{% block title %}The District{% endblock %}</title>
+
+        <link rel="icon" href="images_the_district/the_district_brand/linkedin_banner_image_1.png">
+
         {% block stylesheets %}
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    
         {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
+        {% block javascripts %} 
+
+            <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+            </script>
+            <script src="{{ asset('js/javascript.js') }}"></script>
+
         {% endblock %}
+
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+
+        <div class="container-fluid">
+
+            <header class="col-12 d-flex justify-content-between"> <!--le logo et la barre de navigation sont sur la même ligne-->
+
+                <div class="col-4 col-md-2 mt-2"> <!--le logo-->
+
+                    <img src="{{ asset('images_the_district/the_district_brand/linkedin_banner_image_1.png') }}" class="img-fluid mb-1 logo rounded-3" alt="the district logo">
+
+                </div>
+
+                <nav class="navbar navbar-expand-sm navbar-light col-md-9 ml-auto"> <!--la barre de navigation-->
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+
+                        <span class="navbar-toggler-icon"></span>
+
+                    </button>
+
+                    <div class="collapse navbar-collapse ecrt" id="collapsibleNavbar">
+
+                        <ul class="navbar-nav rotate"> <!-- items de la barre de navigation-->
+
+                            <li class="nav-item ecrt">
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_accueil') }}"><strong>Accueil</strong></a>
+                            </li>
+
+                            <li class="nav-item ecrt">
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_categorie') }}"><strong>Categorie</strong></a>
+                            </li>
+
+                            <li class="nav-item ecrt">
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_plat') }}"><strong>Plats</strong></a>
+                            </li>
+
+                            <li class="nav-item ecrt">
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_contact') }}"><strong>Contact</strong></a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+
+            </header>
+
+            <div class="my-2"> <!--élement pour version mobile-->
+
+                <div class="d-none d-lg-block position-relative"> <!--barre de recherche sur le centre de la video-->
+
+                    <video autoplay loop muted playsinline poster="{{ asset('images_the_district/burgervideo.mp4') }}" class="video rounded-3"> <!--video-->
+                        <source src="{{ asset('images_the_district/burgervideo.mp4') }}" type="video/mp4">
+                    </video>
+
+                    <div class="search-bar position-absolute" id="searchb"> <!--barre de recherche sur le centre de la video-->
+
+                        <nav class="navbar navbar-light bg-transparent "> <!--barre de recherche-->
+
+                            <form class="form-inline justify-content-between input-group">
+                                <input class="form-control " type="search" id="input" placeholder="rechercher...">
+                                <button class="btn btn-outline-warning ml-auto" id="cc" type="button">go!</button>
+                            </form>
+
+                        </nav>
+
+                    </div>
+
+                </div>
+
+                <div class="image-container d-none  d-md-none">
+                    <img src="{{ asset('images_the_district/borderau.png') }}" alt="image de remplacement" class="img-fluid rounded-3"> <!--image-->
+                </div>
+
+                <div id="commande" class="row d-flex justify-content-center mx-auto"></div>
+                <div id="b" class="row d-flex justify-content-center mx-auto"></div>
+                <div id="a" class="row d-flex justify-content-center mx-auto"></div>
+                <div class="row smplat "></div>
+                <div class="form col-12"></div>
+
+            </div>
+
+
+        {% block body %}
+        
+        {% endblock %}
+
+        <footer class="col-12">
+
+            <div class="d-flex justify-content-center"> <!--les different logos sont au centre sur une même ligne-->
+
+                <img class="col-1" src="{{ asset('images_the_district/instagram.png') }}" alt="logo instagram">
+                <img class="col-1" src="{{ asset('images_the_district/facebook.png') }}" alt="logo facebook">
+                <img class="col-1" src="{{ asset('images_the_district/youtube.png') }}" alt="logo youtube">
+
+            </div>
+
+            <nav class="navbar navbar-expand-sm navbar-light d-flex justify-content-end ecriture"> <!--la barre de navigation-->
+
+                <ul class="navbar-nav items"> <!-- items de la barre de navigation-->
+
+                    <li class="nav-item ">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_mentions_legales') }}"><strong>Mentions legales</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ path('app_politique_confid') }}"><strong>Politique de confidentialités</strong></a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </footer>
+
     </body>
+
 </html>

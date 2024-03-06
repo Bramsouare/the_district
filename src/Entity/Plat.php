@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,7 +16,7 @@ class Plat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 70)]
     private ?string $libelle = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -32,6 +34,14 @@ class Plat
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $Categorie = null;
+
+    #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat', orphanRemoval: true)]
+    private Collection $details;
+
+    public function __construct()
+    {
+        $this->details = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +116,36 @@ class Plat
     public function setCategorie(?Categorie $Categorie): static
     {
         $this->Categorie = $Categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, detail>
+     */
+    public function getDetails(): Collection
+    {
+        return $this->details;
+    }
+
+    public function addDetail(detail $detail): static
+    {
+        if (!$this->details->contains($detail)) {
+            $this->details->add($detail);
+            $detail->setPlat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetail(detail $detail): static
+    {
+        if ($this->details->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getPlat() === $this) {
+                $detail->setPlat(null);
+            }
+        }
 
         return $this;
     }

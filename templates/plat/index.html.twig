@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="visuel">
+
+        <div class="col-12 d-flex justify-content-center my-5">
+
+            <h1><strong>Tout nos plats salé</strong></h1>
+
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <!-- AFFICHAGE PLATS -->
+            <div class="row col-12">
+
+                {% for element in dataSalé %}
+                        
+                    <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
+
+                        <img src="{{ asset('food/' ~ element . image) }}" class="card-img-top border-1 mt-3 img-fluid" alt="{{ element . libelle }}">
+
+                        <div class="card-body text-center">
+
+                            <h3 class="card-title">{{ element . libelle }}</h3>
+
+                            <p class="card-text">{{ element . description }}<br>
+                            Menu: {{ element . prix }} €</p>
+
+                            <a type="submit" href="index.php?page=commande&id={{ element . id }}" value="{{ element . id }}" class="btn btn-light
+                                d-flex justify-content-center idd">Commander
+                            </a>
+
+                        </div>
+                        
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>   
+
+
+        <div class="col-12 d-flex justify-content-center my-5">
+
+            <h1><strong>Tout nos desserts</strong></h1>
+
+        </div>
+
+        <div class="d-flex justify-content-center">
+
+            <div class="row col-12">
+
+                {% for element in dataDessert %}
+
+                    <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
+
+                        <img src="{{ asset('food/' ~ element . image) }}" class="card-img-top border-1 mt-3 img-fluid" alt="{{ element . libelle }}">
+
+                        <div class="card-body text-center">
+
+                            <h3 class="card-title">{{ element . libelle }}</h3>
+
+                            <p class="card-text">{{ element . description }}<br>
+                            Menu: {{ element . prix }} €</p>
+
+                            <a type="submit" href="index.php?page=commande&id={{ element . id }}" value="{{ element . id }}" class="btn btn-light
+                                d-flex justify-content-center idd">Commander
+                            </a>
+
+                        </div>
+                        
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="col-12 d-flex justify-content-center my-5">
+
+            <h1><strong>Toutes nos boissons</strong></h1>
+
+        </div>
+
+        <div class="d-flex justify-content-center">
+
+            <div class="row col-12">
+
+                {% for element in dataBoisson %}
+                        
+                    <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
+
+                        <img src="{{ asset('food/' ~ element . image) }}" class="card-img-top border-1 mt-3 img-fluid" alt="{{ element . libelle }}">
+
+                        <div class="card-body text-center">
+
+                            <h3 class="card-title">{{ element . libelle }}</h3>
+
+                            <p class="card-text">{{ element . description }}<br>
+                            Menu: {{ element . prix }} €</p>
+
+                            <a type="submit" href="index.php?page=commande&id={{ element . id }}" value="{{ element . id }}" class="btn btn-light
+                                d-flex justify-content-center idd">Commander
+                            </a>
+
+                        </div>
+                        
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-around row mt-3"> <!--bouton-->      
+
+            <a type="submit" href="{{ path('app_categorie') }}" class="btn btn-light btn-lg zoom col-5 col-md-1 btns">Précédent</a>
+            <a type="submit" href="{{ path('app_contact') }}" class="btn btn-light btn-lg zoom col-5 col-md-1 btns">Suivant</a>
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Commande;
 use App\Repository\DetailRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,13 +17,13 @@ class Detail
     #[ORM\Column]
     private ?int $Quantite = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Plat $plat = null;
-
     #[ORM\ManyToOne(inversedBy: 'detail')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commande = null;
+
+    #[ORM\ManyToOne(inversedBy: 'details')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Plat $plat = null;
 
     public function getId(): ?int
     {
@@ -41,18 +42,6 @@ class Detail
         return $this;
     }
 
-    public function getPlat(): ?Plat
-    {
-        return $this->plat;
-    }
-
-    public function setPlat(?Plat $plat): static
-    {
-        $this->plat = $plat;
-
-        return $this;
-    }
-
     public function getCommande(): ?Commande
     {
         return $this->commande;
@@ -61,6 +50,18 @@ class Detail
     public function setCommande(?Commande $commande): static
     {
         $this->commande = $commande;
+
+        return $this;
+    }
+
+    public function getPlat(): ?Plat
+    {
+        return $this->plat;
+    }
+
+    public function setPlat(?Plat $plat): static
+    {
+        $this->plat = $plat;
 
         return $this;
     }
