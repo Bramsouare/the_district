@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row col-12 d-flex justify-content-center mx-auto">
+
+        <table class="table">
+
+            <thead>
+            
+                <tr>
+
+                    <th><h1>Voici votre panier</h1></th>
+                    <th><h4>Quantité : </h4></th>
+                    <th><h4>Total : </h4></th>
+                    
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for plat in plat %}
+{# {% if plat %} #}
+                    <tr>
+
+                        <td>
+
+                            <img class="img-fluid col-1" src="food/{{ plat . image }}" alt="{{ plat . libelle }}">
+                            <div>
+
+                                <h5>{{ plat . libelle }}</h5><br>
+                                <p>{{ plat . description }}</p>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            <p>
+                            {# {{ plat . quantity }} #}
+                            </p><br>
+
+                            <div>
+
+                                <a type="submit" href="#">-</a>
+                                <a type="submit" href="#">+</a>
+
+                            </div><br>
+
+                            {# <a type="submit" href="{{ path ('delete', {'id': plat . id }) }}">supprimer</a> #}
+
+                        </td>
+
+                        <td>
+                        {# {{ plat . prix }} €  #}
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+{# {% endif %} #}
+                <tr> 
+
+                    <td><p>Total de la commande :</p></td>
+                    {# <td>{{ total }} €</td> #}
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+{% endblock %}

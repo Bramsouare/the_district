@@ -209,7 +209,7 @@ $(document) . ready (function ()
                     // crée une carte pour chaque éléments qui s'affiche quand on click go!
                     var carte = ` 
                         <div class="card custom-border bg border zoom col-2 mb-3 my-4 mx-4 d-flex justify-content-center">
-                            <img src="images_the_district/${item.image}" class="card-img-top border-1 mt-3 img-fluid cards-img timg" alt="${item.libelle}">
+                            <img src="food/${item.image}" class="card-img-top border-1 mt-3 img-fluid cards-img timg" alt="${item.libelle}">
                             <div class="card-body text-center">
                                 <h2 class="card-title">${item.libelle}</h2>
                                 <p class="card-text text-center">${item.description} <br>
@@ -255,7 +255,7 @@ $(document) . ready (function ()
                     // crée une carte carte qui s'affiche quand on click sur une carte de l'index
                     var card = `
                         <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
-                            <img src="images_the_district/${un.image}" class="card-img-top border-1 mt-3 img-fluid card-img timg" alt="${un.libelle}">
+                            <img src="food/${un.image}" class="card-img-top border-1 mt-3 img-fluid card-img timg" alt="${un.libelle}">
                             <div class="card-body text-center">
                                 <h2 class="card-title">${un.libelle}</h2>
                                 <p class="card-text">${un.description} <br>

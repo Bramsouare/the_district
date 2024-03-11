@@ -12,20 +12,20 @@
 
         <div class="d-flex justify-content-center">
             <!-- AFFICHAGE CATEGORIES -->
-            <div class="row col-9">
+            <div class="row col-12 col-md-9 d-flex justify-content-center mx-auto">
 
-                {% for categorie in categorie %}       
+                {% for element in categorie %}       
                     
                     <div class="card custom-border bg zoom ck col-12 col-md-3 bg my-4 mx-5" >
 
-                        <img class="card-img-top border-1 mt-3 img-fluid" src="{{ asset('food/' ~ categorie . image) }}" alt="{{ categorie . libelle }}">
+                        <img class="card-img-top border-1 mt-3 img-fluid" src="{{ asset('food/' ~ element . image) }}" alt="{{ element . libelle }}">
 
                         <div class="card-body text-center">
 
-                            <h2 class="card-title">{{ categorie . libelle }}</h2>
+                            <h2 class="card-title">{{ element . libelle }}</h2>
                             
-                            <span class="alert text-danger" data-id="{{ categorie . id }}">Disponible</span>
-                            <span data-id="{{ categorie . id }}" class="alert gg"></span>
+                            <span class="alert text-danger" data-id="{{ element . id }}">Disponible</span>
+                            <span data-id="{{ element . id }}" class="alert gg"></span>
 
                         </div>
 

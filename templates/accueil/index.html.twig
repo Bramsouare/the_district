@@ -12,7 +12,7 @@
         
         <div class="d-flex justify-content-center">
             <!-- AFFICHAGE CATEGORIES SUR ACCEUIL  -->
-            <div class="row col-9">
+            <div class="row col-12 col-md-9 d-flex justify-content-center mx-auto">
             
                 {% for categorie in categorie %}
 
@@ -45,20 +45,20 @@
         <!-- AFFICHAGE DES BEST-SELLERS SUR INDEX -->
         <div class="row col-12 d-flex justify-content-center mx-auto">
 
-            {% for plats in plat %}
+            {% for element in plats %}
             
                 <div class="card custom-border bg zoom col-12 col-md-2 mb-2 my-2 mx-auto">
 
-                    <img src="{{ asset('food/' ~ plats . image) }}" class="card-img-top border-1 mt-3 img-fluid" alt="{{ plats . libelle }}">
+                    <img src="{{ asset('food/' ~ element . image) }}" class="card-img-top border-1 mt-3 img-fluid" alt="{{ element . libelle }}">
 
                     <div class="card-body text-center">
 
-                        <h3 class="card-title">{{ plats . libelle }}</h3>
+                        <h3 class="card-title">{{ element . libelle }}</h3>
 
-                        <p class="card-text">{{ plats . description }}<br>
-                        Menu: {{ plats . prix }} €</p>     
+                        <p class="card-text">{{ element . description }}<br>
+                        Menu: {{ element . prix }} €</p>     
 
-                        <a href="index.php?page=commande&id={{ plats . id }}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+                        <a href="{{ path ('app_panier', {'id': element . id })}}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
 
                     </div>
                     

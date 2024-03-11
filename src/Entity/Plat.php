@@ -31,9 +31,9 @@ class Plat
     #[ORM\Column]
     private ?bool $active = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: "plats")]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Categorie $Categorie = null;
+    private ?Categorie $categorie = null;
 
     #[ORM\OneToMany(targetEntity: Detail::class, mappedBy: 'plat', orphanRemoval: true)]
     private Collection $details;
@@ -110,12 +110,12 @@ class Plat
 
     public function getCategorie(): ?Categorie
     {
-        return $this->Categorie;
+        return $this->categorie;
     }
 
     public function setCategorie(?Categorie $Categorie): static
     {
-        $this->Categorie = $Categorie;
+        $this->categorie = $Categorie;
 
         return $this;
     }

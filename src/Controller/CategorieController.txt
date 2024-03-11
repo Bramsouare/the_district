@@ -23,7 +23,7 @@ class CategorieController extends AbstractController
     public function index (): Response
     {
        
-        $categorie = $this -> categorieRepo -> findBy ( ['active' => 1], null );
+        $categorie = $this -> categorieRepo -> findBy ( ['active' => 1] );
         // findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
         // $categorie = $this -> categorieRepo -> findAll ();
         $plat = $this -> platRepo -> findAll ();
