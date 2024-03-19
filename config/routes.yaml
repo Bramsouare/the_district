@@ -1,8 +1,39 @@
 controllers:
+    #####################################################
+    # DÉCLARATION DE RESSOURCE : ENSEMBLE DE CONTROLLER #
+    #####################################################
     resource:
+        # Spécifiez le chemin vers le répertoire contenant vos contrôleurs.
         path: ../src/Controller/
+        # Définit le namespace dans lequel se trouvent vos contrôleurs.
         namespace: App\Controller
+        #  Indique le type de ressource, dans ce cas, un attribut, 
+        # Ce qui signifie que les contrôleurs seront chargés à partir d'attributs spécifiques dans les fichiers PHP.
     type: attribute
-    # app_ajouter:
-    #     path: "/ajouter/{id}"
-    #     controller: "App\Service\PanierService::add"
+
+#######################
+# Définit un attribut #
+#######################
+list:
+    # Spécifiez le chemin de l'URL pour cet itinéraire,{id}est un paramètre dynamique.
+    path: '/list/{id}'
+    # Indiquez le contrôleur qui gère cet itinéraire.
+    controller: 'App\Service\PanierService::list'
+
+ajouter:
+    # Spécifiez le chemin de l'URL pour cet itinéraire,{id}est un paramètre dynamique.
+    path: '/ajouter/{id}'
+    # Indiquez le contrôleur qui gère cet itinéraire.
+    controller: 'App\Service\PanierService::add'
+
+retirer:
+    # Spécifiez le chemin de l'URL pour cet itinéraire,{id}est un paramètre dynamique.
+    path: '/retirer/{id}'
+    # Indiquez le contrôleur qui gère cet itinéraire.
+    controller: 'App\Service\PanierService::remove'
+
+supprimer:
+    # Spécifiez le chemin de l'URL pour cet itinéraire,{id}est un paramètre dynamique.
+    path: '/supprimer/{id}'
+    # Indiquez le contrôleur qui gère cet itinéraire.
+    controller: 'App\Service\PanierService::delete'

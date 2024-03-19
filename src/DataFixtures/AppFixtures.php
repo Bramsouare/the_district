@@ -13,9 +13,10 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        /*************************************************************
+        /*############################################################
          *                    LES CATEGORIES
-        *************************************************************/
+        ############################################################*/
+
         $categorie1 = new Categorie ();
 
         $categorie1 -> setLibelle ("Milkshake");
@@ -45,9 +46,9 @@ class AppFixtures extends Fixture
         $manager -> persist ($categorie3);
         $manager -> flush ();
 
-        /*************************************************************
-         *                    LES MILKSHAKES
-        *************************************************************/
+        /*###############################################################
+         *                       LES MILKSHAKES
+        ###############################################################*/
         
         $dessert1 = new Plat ();
 
@@ -87,9 +88,9 @@ class AppFixtures extends Fixture
         $manager -> persist ($dessert3);
         $manager -> flush ();
 
-        /*************************************************************
-         *                    LES PÂTISSERIES
-        *************************************************************/
+        /*##############################################################
+         *                       LES PÂTISSERIES
+        ##############################################################*/
 
         $dessert4 = new Plat ();
 
@@ -129,9 +130,9 @@ class AppFixtures extends Fixture
         $manager -> persist ($dessert6);
         $manager -> flush ();
 
-        /*************************************************************
-         *                    LES BOISSONS
-        *************************************************************/
+        /*###############################################################
+         *                         LES BOISSONS
+        ###############################################################*/
 
         $boisson1 = new Plat ();
 
@@ -210,13 +211,14 @@ class AppFixtures extends Fixture
         $manager -> persist ($boisson6);
         $manager -> flush ();
 
-         /***********************************************************
-         *                  LES UTILISATEURS
-        ***********************************************************/
+        /*###############################################################
+         *                       LES UTILISATEURS
+        ###############################################################*/
         
         $user1 = new User ();
         $user1 -> setEmail ("souare@gmail.com");
-        $user1 -> setPassword ("motsdepasse");
+        // php bin/console security:hash-password
+        $user1 -> setPassword ('$2y$13$bdIhlC4/N48.mwpdWNrdXubW4iO2TjN.Bjpe38V0fSNv4fqBcVUKO');
         $user1 -> setNom ("souare");
         $user1 -> setPrenom ("ibrahima");
         $user1 -> setTelephone ("0123456789");
@@ -231,7 +233,7 @@ class AppFixtures extends Fixture
 
         $user2 = new User ();
         $user2 -> setEmail ("lsf@gmail.com");
-        $user2 -> setPassword ("motsdepasse");
+        $user2 -> setPassword ('$2y$13$4Tp70AFd.jauh2uLLvkmaui.lCDUNVI070IlKetzJcKuaffpvfZpy');
         $user2 -> setNom ("lemsatef");
         $user2 -> setPrenom ("sara");
         $user2 -> setTelephone ("0123456789");
@@ -243,9 +245,9 @@ class AppFixtures extends Fixture
         $manager -> persist($user2);
         $manager -> flush();
 
-        /***********************************************************
-         *                  LES COMMANDES
-        ***********************************************************/
+        /*###########################################################
+         *                      LES COMMANDES
+        ###########################################################*/
 
         $commande1 = new Commande ();
         $dateCommande1 = \DateTime::createFromFormat('Y-m-d H:i:s', '2024-07-20 06:40:21');

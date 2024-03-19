@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+
+    {% endfor %}
+
+    <div class="d-flex justify-content-center my-5">
+
+        <h1>Inscription</h1>
+
+    </div>
+
+    {#######################################################################################
+        ~~~~~~~~~~~~~~~~~~~~~~~~       FORMULAIRE D'INSCRIPTION       ~~~~~~~~~~~~~~~~~~~
+    ########################################################################################}
+
+    {# Afficher les erreurs du formulaire à l'intérieur du formulaire #}
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+
+        <div class="row col-5 justify-content-center mx-auto">
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.nom, {'label': 'Nom', 'attr': {'class': 'form-control'} }) }}
+
+            </div>
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.prenom, {'label': 'Prénom', 'attr': {'class': 'form-control'} }) }}
+
+            </div>
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.telephone, {'label': 'Téléphone', 'attr': {'class': 'form-control'} }) }}
+
+            </div>
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.adresse, {'label': 'Adresse', 'attr': {'class': 'form-control'} }) }}
+
+            </div>
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.cp, {'label': 'Code Postal', 'attr': {'class': 'form-control'} }) }}
+
+            </div>
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.ville, {'label': 'Ville', 'attr': {'class': 'form-control'} }) }}
+
+            </div>
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'} } ) }}
+
+            </div>
+
+            <div class="my-3">
+
+                {{ form_row(registrationForm.plainPassword, {'label': 'Mot de passe', 'attr': {'class': 'form-control'} }) }}
+                
+            </div>
+
+            <div class="form-group form-check my-2">
+
+                {# Afficher explicitement le label pour le champ agreeTerms #}
+                <label class="form-check-label">
+
+                    {{ form_widget(registrationForm.agreeTerms) }}
+
+                    J'accepte les termes et conditions
+
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-center mx-auto">
+
+            <button type="submit" class="btn btn-light btn-lg zoom btns">S'inscrire</button>
+
+        </div>
+
+    {{ form_end(registrationForm) }}
+
+{% endblock %}

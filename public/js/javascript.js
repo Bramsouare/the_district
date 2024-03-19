@@ -214,7 +214,7 @@ $(document) . ready (function ()
                                 <h2 class="card-title">${item.libelle}</h2>
                                 <p class="card-text text-center">${item.description} <br>
                                 Menu: ${item.prix} €</p>
-                                <a href="index.php?page=commande&id=${item.id_plat}" value="${item.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+                                <a href="{{ path('ajouter', {'id':{item.id_plat} }) }}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
                             </div>
                         </div>`;
 
@@ -260,7 +260,7 @@ $(document) . ready (function ()
                                 <h2 class="card-title">${un.libelle}</h2>
                                 <p class="card-text">${un.description} <br>
                                 Menu: ${un.prix} €</p>
-                                <a type="submit" href="index.php?page=commande&id=${un.id_plat}" value="${un.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+                                <a type="submit" href="{{ path('ajouter', {'id':${un.id_plat} }) }}" value="${un.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
                             </div>
                         </div>`;
 

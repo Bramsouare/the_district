@@ -2,77 +2,75 @@
 
 {% block body %}
 
-    <div class="row col-12 d-flex justify-content-center mx-auto">
+
+    {#######################################################################################
+        ~~~~~~~~~~~~~~~~~~~~~~~~  AFFICHAGE TABLEAU PANIER    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ########################################################################################}
+
+  
+    <div class="container">
+
+        <div class="d-flex justify-content-center my-5">
+
+            <h1><strong>Votre panier</strong></h1>
+
+        </div>
 
         <table class="table">
 
             <thead>
-            
+
                 <tr>
 
-                    <th><h1>Voici votre panier</h1></th>
-                    <th><h4>Quantité : </h4></th>
-                    <th><h4>Total : </h4></th>
-                    
+                    <th> Image </th>
+                    <th> Plat </th>
+                    <th> Quantité </th>
+                    <th> Prix unitaire </th>
+                    <th> Total </th>
+                    <th> Actions </th>
+
                 </tr>
 
             </thead>
 
             <tbody>
 
-                {% for plat in plat %}
-{# {% if plat %} #}
+                {% for element in data %}
+
                     <tr>
 
-                        <td>
+                        <td><img src="food/{{ element . platUnite . image }}" alt="{{ element . platUnite . libelle }}" style="width: 100px;"></td>
 
-                            <img class="img-fluid col-1" src="food/{{ plat . image }}" alt="{{ plat . libelle }}">
-                            <div>
+                        <td>{{ element . platUnite . libelle }}</td>
 
-                                <h5>{{ plat . libelle }}</h5><br>
-                                <p>{{ plat . description }}</p>
+                        <td>{{ element . quantity }}</td>
 
-                            </div>
+                        <td>{{ element . platUnite . prix }} €</td>
 
-                        </td>
+                        <td>{{ element . prix }} €</td>
 
                         <td>
 
-                            <p>
-                            {# {{ plat . quantity }} #}
-                            </p><br>
+                            <a href="{{ path('retirer', {'id': element . platUnite . id}) }}"><img src="{{ asset('images_the_district/minus.png') }}" alt="Retirer" style="width: 4%;"></a>
+                            <a href="{{ path('ajouter', {'id': element . platUnite . id}) }}"><img src="{{ asset('images_the_district/plus.png') }}" alt="Ajouter" style="width: 5%;"></a>
+                            <a href="{{ path('supprimer', {'id': element . platUnite . id}) }}"><img src="{{ asset('images_the_district/poubelle.png') }}" alt="Supprimer" style="width: 4%;"></a>
 
-                            <div>
-
-                                <a type="submit" href="#">-</a>
-                                <a type="submit" href="#">+</a>
-
-                            </div><br>
-
-                            {# <a type="submit" href="{{ path ('delete', {'id': plat . id }) }}">supprimer</a> #}
-
-                        </td>
-
-                        <td>
-                        {# {{ plat . prix }} €  #}
                         </td>
 
                     </tr>
 
                 {% endfor %}
-{# {% endif %} #}
-                <tr> 
-
-                    <td><p>Total de la commande :</p></td>
-                    {# <td>{{ total }} €</td> #}
-
-                </tr>
 
             </tbody>
 
         </table>
 
-    </div>
+        <p class="text-center"><strong>Total de la commande : </strong>{{ total }} €</p>
 
+        <a href="{{ path('app_plat') }}" class="btn btn-light btn-lg zoom btns">Ajouter un plat</a>
+
+        <a type="submit" href="{{ path('app_commande') }}" class="btn btn-light btn-lg zoom btns">Valider le panier</a>
+
+    </div>
 
 {% endblock %}

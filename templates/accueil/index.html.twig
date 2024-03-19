@@ -11,7 +11,11 @@
         </div>
         
         <div class="d-flex justify-content-center">
-            <!-- AFFICHAGE CATEGORIES SUR ACCEUIL  -->
+            
+            {#######################################################################################
+                ~~~~~~~~~~~~~~~~~    AFFICHAGE CATEGORIES SUR ACCEUIL    ~~~~~~~~~~~~~~~~~~~~~~~                                 
+            ########################################################################################}
+
             <div class="row col-12 col-md-9 d-flex justify-content-center mx-auto">
             
                 {% for categorie in categorie %}
@@ -42,7 +46,10 @@
 
         </div>
 
-        <!-- AFFICHAGE DES BEST-SELLERS SUR INDEX -->
+        {############################################################################################
+            ~~~~~~~~~~~~~~~~~~~~   AFFICHAGE DES BEST-SELLERS SUR INDEX    ~~~~~~~~~~~~~~~~~~~~~    
+        #############################################################################################}
+        
         <div class="row col-12 d-flex justify-content-center mx-auto">
 
             {% for element in plats %}
@@ -58,7 +65,7 @@
                         <p class="card-text">{{ element . description }}<br>
                         Menu: {{ element . prix }} €</p>     
 
-                        <a href="{{ path ('app_panier', {'id': element . id })}}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+                        <a href="{{ path ('ajouter', {'id': element . id })}}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
 
                     </div>
                     

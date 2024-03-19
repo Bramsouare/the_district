@@ -10,11 +10,16 @@
 
         </div>
 
+        {#######################################################################################
+            ~~~~~~~~~~~~~~~~~~~~~~~~~    FORMULAIRE DE CONTACT    ~~~~~~~~~~~~~~~~~~~~~~~~~                                
+        ########################################################################################}
+
+
         <form action="formulaire.php" method="post">
 
-            <div class="row mt-5"> <!--les éléments sont aligner sur la même ligne-->
+            <div class="row mt-5"> 
 
-                <div class="form-group col-6"> <!--nom-->
+                <div class="form-group col-6"> 
 
                     <label for="nom">nom</label>
                     <input type="text" class="form-control" id="nom" name="nom">
@@ -26,7 +31,7 @@
 
                 <div class="form-group col-6">
 
-                    <label for="prenom">Prénom</label> <!--prenom-->
+                    <label for="prenom">Prénom</label> 
                     <input type="text" class="form-control" id="prenom" name="prenom">
                     <div id="p" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Ce champ est obligatoire !</strong>
@@ -40,7 +45,7 @@
 
                 <div class="form-group col-6">
 
-                    <label for="email">Email</label> <!--email-->
+                    <label for="email">Email</label> 
                     <input type="email" class="form-control" id="email" name="email">
                     <div id="e" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Ce champ est obligatoire !</strong>
@@ -50,7 +55,7 @@
 
                 <div class="form-group col-6">
 
-                    <label for="telephone">Téléphone</label> <!--telephone-->
+                    <label for="telephone">Téléphone</label> 
                     <input type="tel" class="form-control" id="telephone" name="telephone">
                     <div id="t" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
                         <strong>Ce champ est obligatoire !</strong>
@@ -62,7 +67,7 @@
 
             <div class="form-group mt-5 mb-3">
 
-                <label for="message">Message :</label> <!--message-->
+                <label for="message">Message :</label> 
                 <textarea class="form-control" id="message" name="message"></textarea>
                 <div id="m" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
                     <strong>Ce champ est obligatoire !</strong>

@@ -4,90 +4,125 @@
 
     <div class="visuel">
 
-    {# <?php
+        <div class="col-12 d-flex justify-content-center my-5">
 
-        if (isset($_GET["id"]))
-        {
-            foreach ($plats as $individuel)
-            {
-                if ($_GET["id"] == $individuel -> id)
-                { 
-    ?> #}
+            <h1><strong>Confirmation de votre commande</strong></h1>
 
-    
-    {# <div class="card custom-border bg zoom col-12 col-md-2 mb-2 my-2 mx-auto d-flex justify-content-center">
-        <img src="asset/images_the_district/food/<?= $individuel -> image ?>" class="card-img-top border-1 mt-3 img-fluid card-img timg" alt="<?= $individuel -> libelle ?>">
-        <div class="card-body text-center">
-            <h2 class="card-title"><?= $individuel -> libelle ?></h2>
-            <p class="card-text" value="<?= $individuel -> prix ?>"><?= $individuel -> description ?> <br>
-            Total : <?= $individuel -> prix ?>  €</p>
-            <button class="btn btn-light d-flex justify-content-center">Quantité</button>
         </div>
-    </div>
+        
+        <div class="row">
 
-    <div class="col-12 d-flex justify-content-center">
-        <h1><strong>Votre commande</strong></h1>
-    </div>
 
-    <form action="formulaire.php" method="POST"> <!--formulaire-->
-                
-        <div class="form-group mt-4">
+            {#######################################################################################
+                ~~~~~~~~~~~~~~~~~~~~~~~~       FORMULAIRE DE COMMANDE       ~~~~~~~~~~~~~~~~~~~
+            ########################################################################################}
 
-            <label for="nomPrenom">Nom et prénom</label> <!--nom et prenom-->
-            <input type="text" class="form-control" id="nomPrenom" name="nomPrenom">
-            <div id="n_manquant" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Ce champ est obligatoire !</strong> 
+
+            <div class="col-9">
+
+                <div class="">
+
+                    <h3 class="text-center">Formulaire de Commande</h3>
+
+                    <div class="row justify-content-center">
+
+                        <div class="col-5">
+
+                            {{ form_start(form) }}
+
+                                <div class="form-group my-5">
+
+                                    {{ form_label(form.livraison, "Adresse de livraison") }}
+                                    {{ form_widget(form.livraison, {'attr': {'class': 'form-control'}}) }}
+
+                                </div>
+
+                                <div class="form-group mt-5">
+
+                                    {{ form_label(form.facturation, "Adresse de facturation") }}
+                                    {{ form_widget(form.facturation, {'attr': {'class': 'form-control'}}) }}
+
+                                </div>
+
+                                <div class="form-group mt-2">
+
+                                    {{ form_label(form.agreeTerms, "Les adresses doivent être identiques") }}
+                                    {{ form_widget(form.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+
+                                </div>
+
+                                <div class="form-group my-5">
+
+                                    {{ form_label(form.payement1, "Carte bancaire") }}
+                                    {{ form_widget(form.payement1, {'attr': {'class': 'form-check-input'}}) }}
+
+                                </div>
+
+                                <div class="form-group my-5">
+
+                                    {{ form_label(form.payement2, "Paypal") }}
+                                    {{ form_widget(form.payement2, {'attr': {'class': 'form-check-input'}}) }}
+
+                                </div>
+
+                                <a href="{{ path('app_finaliser') }}" class="btn btn-light btn-lg zoom btns">Envoyer</a>
+
+                            {{ form_end(form) }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-3 d-flex justify-content-end">
+
+
+                {#######################################################################################
+                    ~~~~~~~~~~~~~~~~~~~~~~~~       RÉCAPITULATIF DE COMMANDE       ~~~~~~~~~~~~~~~~~
+                ########################################################################################}
+
+
+                <div class="card card-body bg col-3 d-flex justify-content-end">
+
+                    <h5 class="card-header">Récapitulatif de commande</h5>
+
+                    <div class="card-body">
+
+                        <div class="row">
+
+                            {% for element in data %}
+
+                                <div class="col-3 mb-1">
+
+                                    <img src="food/{{ element.platUnite.image }}" alt="{{ element.platUnite.libelle }}" style="width: 100px;">
+
+                                </div>
+
+                                <div class="col-8 d-flex justify-content-end mt-3">
+
+                                    <p>{{ element.platUnite.libelle }} x {{ element.quantity }} = {{ element.prix }} €</p>
+
+                                </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        <p class="text-end mt-2">Total de la commande : {{ total }} €</p>
+
+                        <a href="{{ path('app_plat') }}" class="btn btn-light btn-lg zoom btns">Ajouter un plat</a>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
-        <div class="row mt-4"> <!--les deux élément aligner sur une ligne-->
+    </div>
 
-            <div class="form-group col-12 col-md-6 mt-4">
-
-                <label for="emails">Email</label> <!--email-->
-                <input type="emails" class="form-control" id="emails" name="emails">
-                <div id="email_manquant" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Ce champ est obligatoire !</strong>
-                </div>  
-
-            </div><br>
-            
-            <div class="form-group col-12 col-md-6 mt-4">
-
-                <label for="telephones">Téléphone</label> <!--telephone-->
-                <input type="text" class="form-control" id="telephones" name="telephones">
-                <div id="telephone_manquant" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Ce champ est obligatoire !</strong>
-                </div> 
-
-            </div>
-            
-        </div>
-
-        <div class="form-group mt-5 mb-3">
-
-            <label for="adresses">Votre adresse :</label> <!--adresse-->
-            <textarea class="form-control" id="adresses" name="adresses"></textarea>
-            <div id="adresse_manquant" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Ce champ est obligatoire !</strong> 
-            </div><br>
-            
-        </div>
-
-        <div class="form-group mt-5 mb-3">
-            <button type="submit" href="#" id="envoie" name="envoie" class="btn btn-light btns">Envoyer</button> 
-        </div>
-
-    </form> #}
-
-    {# <?php 
-                };
-            };
-        };
-    ?> #}
-    
-    
-</div>
-    
 {% endblock %}

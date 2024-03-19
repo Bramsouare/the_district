@@ -1,43 +1,113 @@
 security:
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
+
+    ###################################
+    # CONFIGURATION DU HACHAGE DE MDP #
+    ###################################
     password_hashers:
+        # Symfony sélectionne automatiquement le meilleur algorithme de hachage.
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
+
+    #########################################################################
+    # FOURNISSEUR D'UTILISATEUR POUR CHARGER LES USER DE LA BASE DE DONNÉES #
+    #########################################################################
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
+        # Charge les utilisateurs à partir de l'entité User dans l'application. 
         app_user_provider:
+            # Le fournisseur est configuré pour charger les utilisateurs 
             entity:
+                # Par leur adresse e-mail, qui est spécifié comme la propriété email de l'entité User.
                 class: App\Entity\User
                 property: email
     firewalls:
+
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            lazy: true
+            # services de sécurité seront chargés uniquement lorsqu'ils sont nécessaires.
+            lazy: true 
+
+            # Ce pare-feu utilise le fournisseur d'utilisateurs pour charger les utilisateurs.
             provider: app_user_provider
+
+            ########################################################################################################
+            # Configurez la fonctionnalité "Se souvenir de moi" pour permettre aux utilisateurs de rester connectés.
+            ########################################################################################################
+            remember_me:
+                # Une clé secrète utilisée pour chiffrer les cookies de "Se souvenir de moi".
+                secret: '%kernel.secret%'
+                # Durée de vie de la session en secondes.
+                lifetime: 604800
+                #  Le chemin pour lequel le cookie "Se souvenir de moi" est valide.
+                path: /
+                # Déterminez si l'option "Se souvenir de moi" est activée par défaut.
+                always_remember_me: true
+
+            ################################################
+            # Configurez la fonctionnalité de déconnexion.
+            ################################################
+            logout:
+                #  Le chemin vers lequel l'utilisateur est redirigé lorsqu'il se déconnecte.
+                path: app_logout
+                # C'est le chemin vers lequel l'utilisateur est redirigé après s'être déconnecté.
+                target: app_connection
+
+            #################################################
+            # Configurer l'authentification par formulaire.
+            #################################################
+            form_login:
+                # C'est le chemin vers lequel l'utilisateur est redirigé lorsqu'il accède à une page protégée sans être authentifié.
+                login_path: app_connection
+                # C'est le chemin utilisé pour traiter la soumission du formulaire de connexion et authentifier l'utilisateur.
+                check_path: app_connection
+                # C'est le chemin vers lequel l'utilisateur est redirigé après s'être connecté avec succès si aucune redirection explicite n'est définie. 
+                default_target_path: app_accueil
+                # protection CSRF (Cross-Site Request Forgery) est activée pour le formulaire de connexion. Lorsqu'elle est définie sur true,
+                # Symfony générera et vérifiera automatiquement les jetons CSRF pour les formulaires de connexion.
+                enable_csrf: true
+            
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
             # https://symfony.com/doc/current/security/impersonating_user.html
+
+            # fonctionnalité d'usurpation d'identité d'utilisateur, 
+            # qui permet à un administrateur de se connecter en tant qu'un autre utilisateur aux fins de dépannage ou d'administration.
             # switch_user: true
 
-    # Easy way to control access for large sections of your site
-    # Note: Only the *first* access control that matches will be used
+    
+    # Un moyen simple de contrôler l'accès à de grandes sections de votre site 
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # Règle qui spécifique que seuls les utilisateurs ayant le rôle ROLE_USER peuvent accéder aux URL commençant par /profile.
+        - { path: ^/profile,  roles: ROLE_USER }
+
+######################################################################
+# CONFIGURATION COMPORTEMENTAL DE SÉCURITÉ SPÉCIFIQUE POUR LES TESTS #
+######################################################################
 
 when@test:
     security:
         password_hashers:
-            # By default, password hashers are resource intensive and take time. This is
-            # important to generate secure password hashes. In tests however, secure hashes
-            # are not important, waste resources and increase test times. The following
-            # reduces the work factor to the lowest possible values.
             Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+
+                # Symfony de choisir automatiquement l'algorithme de hachage le plus adapté en fonction des meilleures pratiques de sécurité et des capacités du système.
                 algorithm: auto
-                cost: 4 # Lowest possible value for bcrypt
-                time_cost: 3 # Lowest possible value for argon
-                memory_cost: 10 # Lowest possible value for argon
+
+                # Il s'agit du coût de hachage, qui affecte le nombre d'itérations utilisées,
+                # Un coût plus élevé rend le hachage plus prêté et plus sécurisé,  
+                # Un coût plus bas est plus rapide et moins intensif en ressources
+                # Le coût 4 de hachage est réduit au minimum. 
+                cost: 4 
+
+                # Définit le coût de calcul de la fonction de hachage en termes de temps. Un plus élevé augmente le temps nécessaire pour calculer le hachage, 
+                # Ce qui rend les attaques par force brute plus difficiles. En le définissant sur 3, le coût de calcul est réduit au minimum.
+                time_cost: 3 
+
+                # Définit la quantité de mémoire utilisée lors du calcul du hachage. Un coût plus élevé nécessite plus de mémoire, 
+                # Rendant les attaques par force brute plus coûteuses en termes de ressources. 
+                # En le définissant sur 10, la quantité de mémoire utilisée est réduite au minimum.
+                memory_cost: 10 

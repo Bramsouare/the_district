@@ -1,20 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ConnectionController!{% endblock %}
+    {##########################################################################################
+        ~~~~~~~~~~~~~~~~~~~~~~      FORMULAIRE DE CONNECTION     ~~~~~~~~~~~~~~~~~~~~~~~~
+    ###########################################################################################}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <form method="post">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/souare/Bureau/the_district/src/Controller/ConnectionController.php</code></li>
-        <li>Your template at <code>/home/souare/Bureau/the_district/templates/connection/index.html.twig</code></li>
-    </ul>
-</div>
+        {# Vérification si il y a des erreurs #}
+        {% if error %}
+
+            {# Utilisation de la clé du message pour traduire l'erreurs #}
+            <div class="alert alert-danger"> {{ error.messageKey | trans (error.messageData, 'security') }} </div>
+
+        {% endif %}
+
+        {% if app.user %}
+
+            <div class="container-fluid rows d-flex justify-content-between">
+
+                <div class="card mt-3">
+
+                    <div class="d-flex justify-content-center my-auto"><strong>
+
+                        Vous êtes connecté en tant que : </strong>{{ app.user.userIdentifier }}
+
+                    </div>
+
+                </div>
+            
+                <div class="my-3">
+
+                    <a href="{{ path('app_register') }}" class="btn btn-secondary">Déconnexion</a>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+        <div class="container-fluid col-8">
+
+            <div class="d-flex justify-content-center my-5">
+
+                <h1>Veuillez vous connecter</h1>
+
+            </div>
+
+            <label for="username"> Email </label>
+
+            <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+
+            <label for="password" class="mt-5"> Mots de passe </label>
+
+            <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+            #}
+
+            <button class="btn btn-light btn-lg zoom btns mt-5" type="submit">Connection </button>
+
+        </div>
+
+    </form>
+
 {% endblock %}
+
