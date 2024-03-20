@@ -2,10 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Form\CommandeFormType;
 use App\Service\PanierService;
 use App\Repository\PlatRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\TextUI\Command;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -16,10 +20,13 @@ class CommandeController extends AbstractController
 {
     private $platRepo;
 
+    private $mailer;
+
     // Injection du PlatRepository via le constructeur
-    public function __construct (PlatRepository $platRepo)
+    public function __construct (PlatRepository $platRepo, MailerInterface $mailer)
     {
         $this -> platRepo = $platRepo;
+        $this -> mailer = $mailer;
     }
 
     #[Route ('/commande', name: 'app_commande')]
@@ -37,6 +44,11 @@ class CommandeController extends AbstractController
         $form = $this -> createForm (CommandeFormType::class);
         
         $form -> handleRequest ($request);
+
+        if ($form -> isSubmitted () && $form -> isValid () ) 
+        {
+            return $this -> redirectToRoute ('app_finaliser');
+        }
 
         return $this -> render ('commande/index.html.twig',
 

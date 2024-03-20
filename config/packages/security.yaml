@@ -63,7 +63,7 @@ security:
                 # C'est le chemin utilisé pour traiter la soumission du formulaire de connexion et authentifier l'utilisateur.
                 check_path: app_connection
                 # C'est le chemin vers lequel l'utilisateur est redirigé après s'être connecté avec succès si aucune redirection explicite n'est définie. 
-                default_target_path: app_accueil
+                default_target_path: app_bienvenue
                 # protection CSRF (Cross-Site Request Forgery) est activée pour le formulaire de connexion. Lorsqu'elle est définie sur true,
                 # Symfony générera et vérifiera automatiquement les jetons CSRF pour les formulaires de connexion.
                 enable_csrf: true
@@ -81,9 +81,12 @@ security:
     
     # Un moyen simple de contrôler l'accès à de grandes sections de votre site 
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # Règle qui spécifique que seuls les utilisateurs ayant le rôle ROLE_USER peuvent accéder aux URL commençant par /profile.
-        - { path: ^/profile,  roles: ROLE_USER }
+        # 
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
+        # Règle qui spécifique que seuls les utilisateurs ayant le rôle ROLE_CLIENT peuvent accéder aux URL commençant par /profile est /commande.
+        - { path: ^/profile,  roles: ROLE_CLIENT }
+        - { path: ^/commande, roles: ROLE_CLIENT }
 
 ######################################################################
 # CONFIGURATION COMPORTEMENTAL DE SÉCURITÉ SPÉCIFIQUE POUR LES TESTS #

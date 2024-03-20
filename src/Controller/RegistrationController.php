@@ -70,6 +70,10 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // Ajout du client à l'utilisateur
+            $user -> setRoles (['ROLE_CLIENT']);
+
+
             // Prendre les paramètre en cours...
             $entityManager -> persist ($user);
             // Enregistrement en base de données

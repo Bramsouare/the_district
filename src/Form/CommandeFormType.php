@@ -2,15 +2,20 @@
 
 namespace App\Form;
 
-use App\Entity\Commande;
 use App\Entity\User;
-use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\Constraints\IsTrue;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Commande;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class CommandeFormType extends AbstractType
 {
@@ -18,17 +23,51 @@ class CommandeFormType extends AbstractType
     {
         $builder
 
-            ->add('livraison')
+            -> add ('facturation', TextType::class,
+                
+                [
+                    'required' => false,
+                ]
+            )
 
-            ->add('facturation')
+            -> add ('livraison', TextType::class, 
+            
+                [
+                    'required' => false,
+                ]
+            )
 
-            ->add('agreeTerms', CheckboxType::class, 
+            -> add ('memeAdresse', CheckboxType::class, 
 
                 [
                     // non mappé a l'entité et les information ne sont enregistrer
                     'mapped' => false,
-                    'label' => "Les deux adresse sont bien identique",
+                    'required' => false,
+                ]
+            )
 
+            -> add ('payement1', CheckboxType::class,
+
+                [
+                    'required' => false,
+                ]
+                
+            )
+
+            -> add ('payement2', CheckboxType::class,
+            
+                [
+                    'required' => false,
+                ]
+            
+            )
+
+            -> add ('agree', CheckboxType::class, 
+
+                [
+                    // non mappé a l'entité et les information ne sont enregistrer
+                    'mapped' => false,
+                    
                     // contrainte de validation
                     'constraints' => 
 
@@ -37,27 +76,22 @@ class CommandeFormType extends AbstractType
                         new IsTrue(
                             
                             [
-                                'message' => 'veuillez cocher la case s\'il vous plait',
+                                'message' => 'Veuillez accepter le C.G.U.',
                             ]
                         ),
                     ],
                 ]
             )
-
-            -> add ('payement1', CheckboxType::class,)
-
-            -> add ('payement2', CheckboxType::class,)
         ;
     }
 
     public function configureOptions (OptionsResolver $resolver) : void
     {
 
-        $resolver->setDefaults(
+        $resolver -> setDefaults(
             
             [
-
-                'data_class' => Commande::class,
+                // 'data_class' => Commande::class,
             ]
         );
     }

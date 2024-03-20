@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% if app.user %}
+
+        <div class="container-fluid rows d-flex justify-content-between">
+
+            <div class="card mt-3">
+
+                <div class="d-flex justify-content-center my-auto"><strong>
+
+                    Vous êtes connecté en tant que : </strong>{{ app.user.userIdentifier }}
+
+                </div>
+
+            </div>
+        
+            <div class="my-3">
+
+                <a href="{{ path('app_logout') }}" class="btn btn-secondary">Déconnexion</a>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+    <div class="col-12 d-flex justify-content-center my-5">
+
+        <h1><strong>Bienvenue chez The District</strong></h1>
+
+    </div>
+
+    <div class="container-fluid col-5">
+
+        <p class="my-3">Plongez dans une expérience culinaire savoureuse et rapide.</p><br>
+
+        <p>
+            Nous sommes ravis de vous accueillir dans notre monde de saveurs délicieuses et de choix appétissants.<br> Que vous soyez un amateur de burgers juteux, un fan de pizzas croustillantes,<br> un adepte des pâtes al dente, ou que vous préfériez des options végétariennes fraîches et saines, <br>nous avons tout ce qu'il vous faut pour combler vos envies.
+
+            Explorez notre menu alléchant et découvrez une variété de plats préparés avec soin et passion.<br> Et n'oubliez pas de jeter un coup d'œil à nos délicieux desserts pour une touche sucrée à la fin de votre repas.<br>
+
+            Commandez en ligne dès maintenant pour une expérience rapide et pratique,<br> ou venez nous rendre visite dans notre restaurant pour profiter d'une ambiance chaleureuse et conviviale.<br>
+
+            <br>Merci de choisir The District pour votre prochain repas. Bon appétit ! 🍽️
+            
+        </p>
+    
+    </div>
+{% endblock %}
