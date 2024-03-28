@@ -4,7 +4,7 @@
 
     <div id="visuel">
 
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 d-flex justify-content-center my-5">
 
             <h1><strong>Contact</strong></h1>
 
@@ -14,77 +14,59 @@
             ~~~~~~~~~~~~~~~~~~~~~~~~~    FORMULAIRE DE CONTACT    ~~~~~~~~~~~~~~~~~~~~~~~~~                                
         ########################################################################################}
 
+        {{ form_start(form) }}
 
-        <form action="formulaire.php" method="post">
+            <div class="row my-5">
 
-            <div class="row mt-5"> 
+                <div class="form-group col-6">
 
-                <div class="form-group col-6"> 
-
-                    <label for="nom">nom</label>
-                    <input type="text" class="form-control" id="nom" name="nom">
-                    <div id="n" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Ce champ est obligatoire !</strong>
-                    </div><br>
+                    {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
 
                 </div>
 
                 <div class="form-group col-6">
 
-                    <label for="prenom">Prénom</label> 
-                    <input type="text" class="form-control" id="prenom" name="prenom">
-                    <div id="p" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Ce champ est obligatoire !</strong>
-                    </div><br>
+                    {{ form_row(form.prenom, {'attr': {'class': 'form-control'}}) }}
 
                 </div>
 
             </div>
 
-            <div class="row mt-4">
+            <div class="row my-5">
 
                 <div class="form-group col-6">
 
-                    <label for="email">Email</label> 
-                    <input type="email" class="form-control" id="email" name="email">
-                    <div id="e" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Ce champ est obligatoire !</strong>
-                    </div><br>
+                    {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
 
                 </div>
 
                 <div class="form-group col-6">
 
-                    <label for="telephone">Téléphone</label> 
-                    <input type="tel" class="form-control" id="telephone" name="telephone">
-                    <div id="t" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Ce champ est obligatoire !</strong>
-                    </div><br>
+                    {{ form_row(form.telephone, {'attr': {'class': 'form-control'}}) }}
 
                 </div>
 
             </div>
 
-            <div class="form-group mt-5 mb-3">
+            <div class="form-group">
 
-                <label for="message">Message :</label> 
-                <textarea class="form-control" id="message" name="message"></textarea>
-                <div id="m" style="display: none;" class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Ce champ est obligatoire !</strong>
-                </div><br>
-
+                {{ form_label(form.message) }}
+                {{ form_widget(form.message, {'attr': {'class': 'form-control'}}) }}
+                
             </div>
 
-            <button type="submit" id="envoyer" name="envoyer" class="btn btn-light btns btn-md zoom">Envoyer</button> <!--bouton-->
+            <button type="submit" class="btn btn-light btn-md zoom my-3">Envoyer</button>
 
-        </form>
+        {{ form_end(form) }}
+        
 
         <div class="d-flex justify-content-around">
 
-            <a type="submit" href="{{ path('app_plat') }}" class=" btn btn-light btn-lg zoom col-5 col-md-1 btns">Précédent</a>
+            <a href="{{ path('app_plat') }}" class="btn btn-light btn-lg zoom col-5 col-md-1 btns">Précédent</a>
 
         </div>
 
     </div>
 
 {% endblock %}
+

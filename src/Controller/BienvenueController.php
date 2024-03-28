@@ -2,17 +2,30 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BienvenueController extends AbstractController
 {
-    #[Route('/bienvenue', name: 'app_bienvenue')]
-    public function index(): Response
+    private $categorieRepo;
+
+    public function __construct (CategorieRepository $categorieRepo)
     {
-        return $this->render('bienvenue/index.html.twig', [
-            'controller_name' => 'BienvenueController',
-        ]);
+        $this -> categorieRepo = $categorieRepo;
     }
+
+    #[Route ('/bienvenue', name: 'app_bienvenue') ]
+
+    public function index () : Response
+    {
+        return $this -> render ('bienvenue/index.html.twig', 
+        
+            [
+                'controller_name' => 'BienvenueController',
+            ]
+        );
+    }
+    
 }

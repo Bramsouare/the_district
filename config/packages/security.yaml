@@ -63,7 +63,7 @@ security:
                 # C'est le chemin utilisé pour traiter la soumission du formulaire de connexion et authentifier l'utilisateur.
                 check_path: app_connection
                 # C'est le chemin vers lequel l'utilisateur est redirigé après s'être connecté avec succès si aucune redirection explicite n'est définie. 
-                default_target_path: app_bienvenue
+                default_target_path: app_accueil
                 # protection CSRF (Cross-Site Request Forgery) est activée pour le formulaire de connexion. Lorsqu'elle est définie sur true,
                 # Symfony générera et vérifiera automatiquement les jetons CSRF pour les formulaires de connexion.
                 enable_csrf: true

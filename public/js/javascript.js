@@ -227,51 +227,51 @@ $(document) . ready (function ()
         };
 
 
-// CLICK CARTE CATEGORIE :
+// // CLICK CARTE CATEGORIE :
 
 
-        $(".ck") . click (function () // quand l'élément ck est cliqué 
-        { 
+//         $(".ck") . click (function () // quand l'élément ck est cliqué 
+//         { 
 
-            visuel . hide (); // masquer l'index
+//             visuel . hide (); // masquer l'index
 
-            // trouvé la valeur sur l'élément cliqué puis l'affecte dans la variable 
-            var platid = $(this) . find (".gg") . attr ("data-id");
+//             // trouvé la valeur sur l'élément cliqué puis l'affecte dans la variable 
+//             var platid = $(this) . find (".gg") . attr ("data-id");
 
-            // vider le resultat de la recherche
-            result . empty ();
+//             // vider le resultat de la recherche
+//             result . empty ();
 
-            // parcour chaque élément dans le tableau plat
-            $. each (plat, function (index, un) 
-            {
+//             // parcour chaque élément dans le tableau plat
+//             $. each (plat, function (index, un) 
+//             {
 
-                // récupère l'id de la catégorie de l'élément 
-                var catid = un . id_categorie;
+//                 // récupère l'id de la catégorie de l'élément 
+//                 var catid = un . id_categorie;
 
-                // vérifie si l'id de la catégorie et l'id en cours de traitement correspondent
-                if (catid == platid) 
-                {
+//                 // vérifie si l'id de la catégorie et l'id en cours de traitement correspondent
+//                 if (catid == platid) 
+//                 {
 
-                    // crée une carte carte qui s'affiche quand on click sur une carte de l'index
-                    var card = `
-                        <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
-                            <img src="food/${un.image}" class="card-img-top border-1 mt-3 img-fluid card-img timg" alt="${un.libelle}">
-                            <div class="card-body text-center">
-                                <h2 class="card-title">${un.libelle}</h2>
-                                <p class="card-text">${un.description} <br>
-                                Menu: ${un.prix} €</p>
-                                <a type="submit" href="{{ path('ajouter', {'id':${un.id_plat} }) }}" value="${un.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
-                            </div>
-                        </div>`;
+//                     // crée une carte carte qui s'affiche quand on click sur une carte de l'index
+//                     var card = `
+//                         <div class="card custom-border bg zoom col-12 col-md-2 mb-3 my-3 mx-4 d-flex justify-content-center">
+//                             <img src="food/${un.image}" class="card-img-top border-1 mt-3 img-fluid card-img timg" alt="${un.libelle}">
+//                             <div class="card-body text-center">
+//                                 <h2 class="card-title">${un.libelle}</h2>
+//                                 <p class="card-text">${un.description} <br>
+//                                 Menu: ${un.prix} €</p>
+//                                 <a type="submit" href="{{ path('ajouter', {'id':${un.id_plat} }) }}" value="${un.id_plat}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+//                             </div>
+//                         </div>`;
 
-                    // afficher les carte de resultat    
-                    result . append (card);
+//                     // afficher les carte de resultat    
+//                     result . append (card);
 
-                };
+//                 };
 
-            });
+//             });
 
-        });
+//         });
 
 
         // AFFICHAGE CARTE CATEGORIES :

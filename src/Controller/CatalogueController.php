@@ -89,6 +89,25 @@ class CatalogueController extends AbstractController
         );
     }
 
-}
+    /*####################################################################################################################################
+     *                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~     PLATS CLICKÉ CONTROLLER    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ####################################################################################################################################*/
 
-?>
+
+    #[Route ('/plats/{categorie_id}', name: 'app_plats')]
+
+    public function clickPlat ($categorie_id): Response
+    {
+        $cardCat = $this -> categorieRepo -> find ($categorie_id);
+        $plat = $cardCat -> getPlats ();
+
+        return $this -> render ('accueil/clickCategorie.html.twig',
+            
+            [
+                'plat' => $plat,
+            ]
+        );
+
+    }
+
+}

@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /*###############################################################################################
     ~~~~~~~~~~~~~~~~~~~~~~~~~      CONNECTION CONTROLLER     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,5 +48,12 @@ class ConnectionController extends AbstractController
     {
         // Lance une exception pour indiquer que :
         throw new \LogicException ('Cette méthode peut rester vide car elle sera interceptée par le pare-feu de déconnexion de Symfony');
+    }
+
+    public function deconnection (Request $request): RedirectResponse
+    {
+        $request -> getSession () -> invalidate ();
+        
+        return $this -> redirectToRoute ('app_accueil');
     }
 }

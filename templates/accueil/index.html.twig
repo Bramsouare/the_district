@@ -20,7 +20,7 @@
             
                 {% for categorie in categorie %}
 
-                    <div class="card custom-border bg zoom ck col-12 col-md-3 bg my-4 mx-5">
+                    <div class="card custom-border bg zoom ck col-12 col-md-3 bg my-4 mx-5"><a type="submit" href="{{ path ('app_plats',{'categorie_id': categorie . id} ) }}">
 
                         <img class="card-img-top border-1 mt-3 img-fluid" src="{{ asset('food/' ~ categorie . image) }}" alt="{{ categorie . libelle }}">
 
@@ -32,7 +32,7 @@
                             
                         </div>
 
-                    </div> 
+                    </a></div>
                     
                 {% endfor %}
                     
@@ -65,7 +65,7 @@
                         <p class="card-text">{{ element . description }}<br>
                         Menu: {{ element . prix }} €</p>     
 
-                        <a href="{{ path ('ajouter', {'id': element . id })}}" class="btn btn-light d-flex justify-content-center idd">Commander</a>
+                        <a href="{{ path ('ajouter', {'id': element . id })}}" class="btn btn-light d-flex justify-content-center idd">Ajouter au  panier</a>
 
                     </div>
                     
@@ -73,7 +73,7 @@
             
             {% endfor %}
 
-            <div class="d-flex justify-content-center mt-4"> <!--bouton--> 
+            <div class="d-flex justify-content-center mt-4"> 
 
                 <a href="{{ path('app_categorie') }}" class="btn btn-light btn-lg zoom col-5 col-md-1 btns">Suivant</a>
                 

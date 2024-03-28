@@ -99,7 +99,7 @@ class RegistrationController extends AbstractController
             );
 
             // Redirection après l'inscription
-            return $this -> redirectToRoute ('app_accueil');
+            return $this -> redirectToRoute ('app_bienvenue');
         }
 
         // Rendu du formulaire d'inscription

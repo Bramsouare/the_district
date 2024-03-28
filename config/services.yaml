@@ -43,6 +43,16 @@ services:
             # Indiquer que le fichier Kernel.phpsitué dans le répertoire srcsera exclu de la configuration des services. 
             - '../src/Kernel.php'
 
+    # App\EventSubscriber\CommandeSubscriber:
+    #     arguments:
+    #         $mailer: '@Symfony\Component\Mailer\MailerInterface'
+    #     tags: [doctrine.event_subscriber]
+
+    App\EventSubscriber\CommandeSubscriber:
+        arguments:
+            $security: '@Symfony\Bundle\SecurityBundle\Security'
+        tags: [doctrine.event_subscriber]
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 

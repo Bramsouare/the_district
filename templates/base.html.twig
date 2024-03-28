@@ -47,7 +47,7 @@
                     ~~~~~~~~~~~~~~~~~    LOGO    ~~~~~~~~~~~~~~~~~~~                                 
                 #########################################################}
 
-                <div class="col-4 col-md-2 mt-2"> 
+                <div class="col-3 col-md-2 mt-2"> 
 
                     <img src="{{ asset('images_the_district/the_district_brand/linkedin_banner_image_1.png') }}" class="img-fluid mb-1 logo rounded-3" alt="the district logo">
 
@@ -56,8 +56,8 @@
                 {###########################################################################
                     ~~~~~~~~~~~~~~~~~    BARRE DE NAVIGATION    ~~~~~~~~~~~~~~~~~~~~~~~                                 
                 ############################################################################}
-
-                <nav class="navbar navbar-expand-sm navbar-light col-md-9 ml-auto"> <!--la barre de navigation-->
+                
+                <nav class="navbar navbar-expand-sm navbar-light col-md-7 ml-auto"> <!--la barre de navigation-->
 
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 
@@ -67,11 +67,7 @@
 
                     <div class="collapse navbar-collapse ecrt" id="collapsibleNavbar">
 
-                        <ul class="navbar-nav rotate"> <!-- items de la barre de navigation-->
-
-                            <li class="nav-item ecrt">
-                                <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}"><strong>Inscription</strong></a>
-                            </li>
+                        <ul class="navbar-nav rotate mt-4"> <!-- items de la barre de navigation-->
 
                             <li class="nav-item ecrt">
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_connection') }}"><strong>Connection</strong></a>
@@ -93,15 +89,17 @@
                                 <a class="nav-link active" aria-current="page" href="{{ path('app_contact') }}"><strong>Contact</strong></a>
                             </li>
 
-                            <li class="nav-item ecrt">
-                                <a class="nav-link active" aria-current="page" href="{{ path('app_panier') }}"><strong>Panier</strong></a>
-                            </li>
-
                         </ul>
 
                     </div>
 
                 </nav>
+
+                <div class="col-2">
+
+                    <a class="d-flex justify-content-end mt-4" aria-current="page" href="{{ path('app_panier') }}"><img src="{{ asset('images_the_district/panier.png') }}" alt="panier" style="width: 30%;"></a>
+
+                </div>
 
             </header>
 
